@@ -2,6 +2,8 @@
 #include <iostream>
 
 using namespace std;
+
+// 5th edition cn P229
 int main (int argc, char *argv[]) {
     Sales_data_s total;
 

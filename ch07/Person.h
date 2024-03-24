@@ -4,7 +4,7 @@
 #include <ostream>
 #include <string>
 
-struct Person {
+class Person {
     std::string name;
     std::string address;
 

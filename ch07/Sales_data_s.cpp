@@ -25,7 +25,7 @@ Sales_data_s add(const Sales_data_s &lhs, const Sales_data_s &rhs) {
 }
 
 std::ostream &print(std::ostream& os, const Sales_data_s& item) {
-    os << ""
+    os  << ""
         << "isbn     : " << item.isbn()      << '\t'
         << "sold     : " << item.units_sold  << '\t'
         << "revenue  : " << item.revenue     << '\t'
