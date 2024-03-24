@@ -3,8 +3,7 @@
 
 using namespace std;
 
-int main (int argc, char *argv[])
-{
+int main (int argc, char *argv[]) {
     Sales_data_s sd1;
     Sales_data_s sd2("Book1");
     Sales_data_s sd3("Book2", 7, 5.8);

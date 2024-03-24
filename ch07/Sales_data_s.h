@@ -11,8 +11,7 @@ Sales_data_s add(const Sales_data_s&, const Sales_data_s&);
 std::ostream &print(std::ostream&, const Sales_data_s&);
 std::istream &read (std::istream&, Sales_data_s&);
 
-struct Sales_data_s
-{
+struct Sales_data_s {
     std::string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
