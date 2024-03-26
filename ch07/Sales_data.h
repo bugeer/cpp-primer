@@ -24,6 +24,7 @@ private:
     friend std::istream &read(std::istream&, Sales_data&);
     friend std::ostream &print(std::ostream&, const Sales_data&);
 
+    inline
     double avg_price() const {
         return units_sold ? revenue / units_sold : 0; 
     }
