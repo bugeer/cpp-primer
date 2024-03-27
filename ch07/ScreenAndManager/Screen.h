@@ -13,6 +13,7 @@ public:
     using ScreenIndex = std::vector<Screen>::size_type;
     void clear(ScreenIndex);
 
+    window_manager();
 private:
     std::vector<Screen> screens;
 };
@@ -90,6 +91,10 @@ inline
 Screen &Screen::set(pos row, pos col, char ch) {
     contents[row*width + col] = ch;
     return *this;
+}
+
+window_manager::window_manager() {
+    screens = {Screen(24, 80, ' ')};
 }
 
 inline
