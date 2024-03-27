@@ -34,6 +34,7 @@ public:
         do_display(os);
         return *this;
     }
+    pos size() const;
 
 private:
     pos cursor = 0;

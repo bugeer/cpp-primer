@@ -29,3 +29,8 @@ Screen &Screen::set(pos row, pos col, char ch) {
     contents[row*width + col] = ch;
     return *this;
 }
+
+Screen::pos Screen::size() const {
+    return height * width;
+}
+

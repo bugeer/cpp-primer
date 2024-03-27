@@ -12,6 +12,8 @@ public:
     void clear(ScreenIndex);
 
     window_manager();
+    ScreenIndex addScreen(const Screen &);
+
 private:
     std::vector<Screen> screens;
 };
