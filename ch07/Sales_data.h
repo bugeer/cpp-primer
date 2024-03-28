@@ -1,6 +1,8 @@
 #ifndef __SALES_DATA__
 #define __SALES_DATA__
 
+#include "ScreenAndManager/WindowManager.h"
+#include <iostream>
 #include <istream>
 #include <ostream>
 #include <string>
@@ -12,9 +14,23 @@ public:
         const std::string &s,
         unsigned n,
         double p
-    ): bookNo(s), units_sold(n), revenue(p*n) {}
-    Sales_data(const std::string &s = ""): bookNo(s) {}
-    Sales_data(std::istream &is) { read(is, *this); }
+    ): bookNo(s), units_sold(n), revenue(p*n) {
+        std::cout << "Call Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p*n)" << std::endl;
+    }
+    // Sales_data(const std::string &s = ""): bookNo(s) {}
+    // Sales_data(std::istream &is) { read(is, *this); }
+
+    // delegating constructor
+    Sales_data(): Sales_data("", 0, 0) {
+        std::cout << "Call Sales_data(): Sales_data(\"\", 0, 0)" << std::endl;
+    };
+    Sales_data(std::string s): Sales_data(s, 0, 0) {
+        std::cout << "Call Sales_data(std::string s): Sales_data(s, 0, 0)" << std::endl;
+    };
+    Sales_data(std::istream &is): Sales_data() {
+        std::cout << "Call Sales_data(std::istream &is): Sales_data()" << std::endl;
+        read(is, *this); 
+    }
 
     std::string isbn() const { return bookNo; }
     Sales_data &combine(const Sales_data &);
