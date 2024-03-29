@@ -31,6 +31,8 @@ public:
         read(is, *this); 
     }
 
+    Sales_data(const Sales_data&);
+
     std::string isbn() const { return bookNo; }
     Sales_data &combine(const Sales_data &);
 
