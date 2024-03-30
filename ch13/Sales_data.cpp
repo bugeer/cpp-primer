@@ -2,7 +2,20 @@
 #include <iostream>
 
 Sales_data::Sales_data(const Sales_data& sd) 
-: bookNo(sd.bookNo), units_sold(sd.units_sold), revenue(sd.revenue) {}
+: bookNo(sd.bookNo), units_sold(sd.units_sold), revenue(sd.revenue) {
+    std::cout << "Sales_data::Sales_data(const Sales_data& sd) " << std::endl;
+}
+
+Sales_data&
+Sales_data::operator=(const Sales_data& rhs) {
+    std::cout << "Sales_data::operator=(const Sales_data& rhs)" << std::endl;
+
+    bookNo     = rhs.bookNo;
+    units_sold = rhs.units_sold;
+    revenue    = rhs.revenue;
+
+    return *this;
+}
 
 Sales_data& Sales_data::combine(const Sales_data &rhs) {
     units_sold += rhs.units_sold;

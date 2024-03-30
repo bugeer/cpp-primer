@@ -1,6 +1,7 @@
 #ifndef __SALES_DATA__
 #define __SALES_DATA__
 
+#include <algorithm>
 #include <iostream>
 #include <istream>
 #include <ostream>
@@ -31,7 +32,16 @@ public:
         read(is, *this); 
     }
 
+    // copy constructor
     Sales_data(const Sales_data&);
+
+    // copy-assignment operator
+    Sales_data& operator=(const Sales_data &);
+
+    // destructor
+    ~Sales_data() {
+        std::cout << "~Sales_data()" << std::endl;
+    }
 
     std::string isbn() const { return bookNo; }
     Sales_data &combine(const Sales_data &);
