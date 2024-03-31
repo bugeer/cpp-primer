@@ -10,14 +10,16 @@ public:
         : ps(new std::string(s)), i(0) { }
 
     HasPtr(const HasPtr &hp)
-        : ps(new std::string(*(hp.getStr()))), i(0) {
+        : ps(new std::string(*(hp.ps))), i(0) {
         std::cout << "HasPtr(const HasPtr &hp)" << std::endl;
     }
 
     HasPtr& operator= (const HasPtr &rhs) {
         std::cout << "HasPtr& operator= (const HasPtr &rhs)" << std::endl;
-        ps = new std::string(*(rhs.getStr()));
-        i = 0;
+        auto newp = new std::string(*rhs.ps);
+        delete ps;
+        ps = newp;
+        i = rhs.i;
         return *this;
     }
 
