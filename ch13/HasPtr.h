@@ -9,6 +9,8 @@ public:
     HasPtr(const std::string &s = std::string())
         : ps(new std::string(s)), i(0) { }
 
+    HasPtr(const char* str): ps(new std::string(str)), i(0) { }
+
     HasPtr(const HasPtr &hp)
         : ps(new std::string(*(hp.ps))), i(0) {
         std::cout << "HasPtr(const HasPtr &hp)" << std::endl;
@@ -27,13 +29,27 @@ public:
         delete ps;
     }
 
-    std::string* getStr() const {
-        return ps;
+    friend void swap(HasPtr& lhs, HasPtr& rhs);
+
+    std::string& getStr() const {
+        return *ps;
+    }
+
+    void setStr(const std::string &s) {
+        *ps = s;
     }
 
 private:
     std::string *ps;
     int i;
 };
+
+inline void swap(HasPtr &lhs, HasPtr &rhs) {
+    std::cout << "Swap Value-like HasPtr" << std::endl;
+
+    using std::swap;
+    swap(lhs.ps, rhs.ps);
+    swap(lhs.i,  rhs.i );
+}
 
 #endif // !__HAS_PTR__
