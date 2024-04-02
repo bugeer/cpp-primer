@@ -43,8 +43,13 @@ StrVec::~StrVec() {
 }
 
 void StrVec::push_back(const std::string& s) {
-  chk_n_alloc();
-  alloc.construct(first_free++, s);
+    chk_n_alloc();
+    alloc.construct(first_free++, s);
+}
+
+void StrVec::push_back(std::string&& s) {
+    chk_n_alloc();
+    alloc.construct(first_free++, std::move(s));
 }
 
 void StrVec::free() {
@@ -70,6 +75,7 @@ void StrVec::reallocate() {
     for(size_t i=0; i!=size(); ++i) {
         alloc.construct(dest++, std::move(*elem++));
     }
+
     free();
     elements = newdata;
     first_free = dest;

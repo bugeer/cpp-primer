@@ -13,13 +13,17 @@ class Message {
 public:
     explicit Message(const std::string &str = ""): contents(str) { }
     Message(const Message &);
+    Message(Message &&m);
     Message& operator=(const Message &);
+    Message& operator=(Message &&);
     ~Message();
 
     void save(Folder&);
     void remove(Folder&);
 
     void print() const;
+
+    void move_folders(Message*);
 
 private:
     std::string contents;
