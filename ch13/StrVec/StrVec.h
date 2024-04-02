@@ -2,6 +2,7 @@
 #define __STRVEC__
 
 #include <cstddef>
+#include <initializer_list>
 #include <memory>
 #include <string>
 #include <utility>
@@ -10,7 +11,13 @@ class StrVec {
 public:
     StrVec(): elements(nullptr), first_free(nullptr), cap(nullptr) { }
     StrVec(const StrVec&);
+    StrVec(StrVec &&s) noexcept
+        : elements(s.elements), first_free(s.first_free), cap(s.cap) {
+        s.elements = s.first_free = s.cap = nullptr;
+    }
+    StrVec(std::initializer_list<std::string>);
     StrVec& operator=(const StrVec&);
+    StrVec& operator=(StrVec &&) noexcept;
     ~StrVec();
 
     void push_back(const std::string&);
@@ -33,6 +40,7 @@ private:
     std::string *cap;
 
     void free();
+    void free_lambda();
     void reallocate();
 
     std::pair<std::string*, std::string*>

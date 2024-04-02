@@ -1,8 +1,17 @@
 #include "StrVec.h"
+#include <initializer_list>
 #include <memory>
+#include <string>
+#include <utility>
 
 StrVec::StrVec(const StrVec &s) {
     auto newdata = alloc_n_copy(s.begine(), s.end());
+    elements = newdata.first;
+    first_free = cap = newdata.second;
+}
+
+StrVec::StrVec(std::initializer_list<std::string> ss) {
+    std::pair<std::string*, std::string*> newdata = alloc_n_copy(ss.begin(), ss.end());
     elements = newdata.first;
     first_free = cap = newdata.second;
 }
@@ -12,6 +21,19 @@ StrVec& StrVec::operator=(const StrVec &rhs) {
     free();
     elements = data.first;
     first_free = cap = data.second;
+
+    return *this;
+}
+
+StrVec& StrVec::operator=(StrVec &&rhs) noexcept {
+    if(this != &rhs) {
+        free();
+        elements   = rhs.elements;
+        first_free = rhs.first_free;
+        cap        = rhs.cap;
+
+        rhs.elements = rhs.first_free = rhs.cap = nullptr;
+    }
 
     return *this;
 }
@@ -33,6 +55,10 @@ void StrVec::free() {
 
         alloc.deallocate(elements, cap - elements);
     }
+}
+
+void StrVec::free_lambda() {
+
 }
 
 void StrVec::reallocate() {
