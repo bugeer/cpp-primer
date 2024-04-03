@@ -1,0 +1,24 @@
+Book store log:
+
+isbn     : book-no-01,	sold     : 20,	revenue  : 599.8,	avg_price: 29.99,	
+isbn     : book-no-02,	sold     : 21,	revenue  : 419.79,	avg_price: 19.99,	
+isbn     : book-no-03,	sold     : 22,	revenue  : 527.78,	avg_price: 23.99,	
+isbn     : book-no-04,	sold     : 18,	revenue  : 503.82,	avg_price: 27.99,	
+isbn     : book-no-05,	sold     : 11,	revenue  : 659.89,	avg_price: 59.99,	
+isbn     : book-no-06,	sold     : 10,	revenue  : 199.9,	avg_price: 19.99,	
+isbn     : book-no-07,	sold     : 80,	revenue  : 3199.2,	avg_price: 39.99,	
+isbn     : book-no-08,	sold     : 50,	revenue  : 1299.5,	avg_price: 25.99,	
+isbn     : book-no-09,	sold     : 27,	revenue  : 1025.73,	avg_price: 37.99,	
+
+Book store log:
+
+isbn     : book-no-01,	sold     : 20,	revenue  : 599.8,	avg_price: 29.99,	
+isbn     : book-no-02,	sold     : 21,	revenue  : 419.79,	avg_price: 19.99,	
+isbn     : book-no-03,	sold     : 22,	revenue  : 527.78,	avg_price: 23.99,	
+isbn     : book-no-04,	sold     : 18,	revenue  : 503.82,	avg_price: 27.99,	
+isbn     : book-no-05,	sold     : 11,	revenue  : 659.89,	avg_price: 59.99,	
+isbn     : book-no-06,	sold     : 10,	revenue  : 199.9,	avg_price: 19.99,	
+isbn     : book-no-07,	sold     : 80,	revenue  : 3199.2,	avg_price: 39.99,	
+isbn     : book-no-08,	sold     : 50,	revenue  : 1299.5,	avg_price: 25.99,	
+isbn     : book-no-09,	sold     : 27,	revenue  : 1025.73,	avg_price: 37.99,	
+
