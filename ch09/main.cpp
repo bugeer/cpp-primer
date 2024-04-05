@@ -129,5 +129,23 @@ int main (int argc, char *argv[]) {
         swap(s_vec1, s_vec2);
     }
 
+    {
+        print_section("delete odd");
+        std::list<int> i_list = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        auto it = i_list.begin();
+        while(it != i_list.end()) {
+            if(*it % 2) {
+                it = i_list.erase(it);
+            } else {
+                it ++;
+            }
+        }
+        std::cout << "after remove odd:" << std::endl;
+        for(auto i : i_list) {
+            std::cout << i << " ";
+        }
+        std::cout << std::endl;
+    }
+
     return 0;
 }
