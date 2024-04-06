@@ -1,0 +1,11 @@
+what is this?
+this is the complete api reference for ogre (object-oriented graphics rendering engine). contained within are the specifications for each namespace/module/class and the methods from those which you can refer to when writing code which uses ogre.
+the api reference for a specific ogre version can be found under:
+    https://ogrecave.github.io/ogre/api/13
+    https://ogrecave.github.io/ogre/api/1.12
+i.e. replace the last part with the version number, for example 14, 1.11, etc.
+it's so big!
+yes it is (and thank you for noticing). ogre is a large and complex system so the api documentation, whilst fully inclusive and the most complete reference to ogre that you'll find, is not the recommended way to start learning. you will certainly want to refer to this documentation once you have found your feet, and pretty soon referring to it will become second nature. until then, you should begin with more "discussive" documentation such as:
+    the manual: the ogre manual is a general introduction to the ogre principles and core components, and a reference to various important parts of the ogre system, especially the script syntax for materials, particle systems, and overlays.
+    the ogre tutorials: this is a gold mine for new and experienced users alike.
+we make an effort to document our classes fully so we hope you can find what you need here. however, if you can't find it, or you're not sure where to start looking, visit the main ogre website and dip into the community areas like the wiki and the forums to get some assistance.

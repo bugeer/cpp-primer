@@ -1,5 +1,4 @@
 #include <array>
-#include <cerrno>
 #include <deque>
 #include <forward_list>
 #include <iostream>
@@ -145,6 +144,46 @@ int main (int argc, char *argv[]) {
             std::cout << i << " ";
         }
         std::cout << std::endl;
+    }
+
+    {
+        print_section("container's size");
+        std::vector<int> ivec;
+        std::cout << "ivec: size:     " << ivec.size()     << std::endl;
+        std::cout << "ivec: capacity: " << ivec.capacity() << std::endl;
+        for(std::vector<int>::size_type ix=0; ix != 24; ++ix) {
+            ivec.push_back(ix);
+        }
+        std::cout << std::endl;
+        std::cout << "after push back 24 elements:" << std::endl;
+        std::cout << "ivec: size:     " << ivec.size()     << std::endl;
+        std::cout << "ivec: capacity: " << ivec.capacity() << std::endl;
+
+        ivec.reserve(60);
+        std::cout << std::endl;
+        std::cout << "after reserve(60):" << std::endl;
+        std::cout << "ivec: size:     " << ivec.size()     << std::endl;
+        std::cout << "ivec: capacity: " << ivec.capacity() << std::endl;
+
+        while(ivec.size() != ivec.capacity()) {
+            ivec.push_back(ivec.size());
+        }
+        std::cout << std::endl;
+        std::cout << "after push back till size==capacity:" << std::endl;
+        std::cout << "ivec: size:     " << ivec.size()     << std::endl;
+        std::cout << "ivec: capacity: " << ivec.capacity() << std::endl;
+
+        ivec.push_back(42);
+        std::cout << std::endl;
+        std::cout << "after push back one more:" << std::endl;
+        std::cout << "ivec: size:     " << ivec.size()     << std::endl;
+        std::cout << "ivec: capacity: " << ivec.capacity() << std::endl;
+
+        ivec.shrink_to_fit();
+        std::cout << std::endl;
+        std::cout << "after shrink_to_fit:" << std::endl;
+        std::cout << "ivec: size:     " << ivec.size()     << std::endl;
+        std::cout << "ivec: capacity: " << ivec.capacity() << std::endl;
     }
 
     return 0;
