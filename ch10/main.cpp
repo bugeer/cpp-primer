@@ -1,5 +1,7 @@
 #include <algorithm>
 #include <iostream>
+#include <iterator>
+#include <list>
 #include <numeric>
 #include <string>
 #include <vector>
@@ -90,7 +92,32 @@ int main (int argc, char *argv[]) {
     }
 
     {
-        std::placeholders::_1;
+        print_section("insert iterator");
+        std::list<int> ilist0 = {1, 2, 3, 4};
+        std::list<int> ilist1;
+        std::list<int> ilist2;
+
+        std::copy(ilist0.cbegin(), ilist0.cend(), std::front_inserter(ilist1));
+        std::copy(ilist0.cbegin(), ilist0.cend(), std::inserter(ilist2, ilist2.begin()));
+
+        std::cout << "ilist0: ";
+        for(auto i : ilist0) { std::cout << i << " "; }
+        std::cout << std::endl;
+        std::cout << "ilist1: ";
+        for(auto i : ilist1) { std::cout << i << " "; }
+        std::cout << std::endl;
+        std::cout << "ilist2: ";
+        for(auto i : ilist2) { std::cout << i << " "; }
+        std::cout << std::endl;
+    }
+
+    {
+        print_section("reverse iterator");
+        std::vector<int> ivec = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+        for(auto r_iter = ivec.crbegin(); r_iter != ivec.crend(); ++r_iter) {
+            std::cout << *r_iter << std::endl;
+        }
     }
 
     return 0;
