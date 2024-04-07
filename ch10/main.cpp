@@ -58,5 +58,40 @@ int main (int argc, char *argv[]) {
         std::cout << std::endl;
     }
 
+    {
+        print_section("p10.14 lambda");
+        auto sum = [](int a, int b) {
+            return a + b;
+        };
+        std::cout << "sum(1, 2): " << sum(1, 2) << std::endl;
+
+        print_section("p10.15 lambda");
+        int x = 10;
+        auto add = [x](int a) {
+            return x + a;
+        };
+        std::cout << "9+x: " << add(9) << std::endl;
+
+        std::vector<int> ivec = {-1, -2, -3, -4, 0, 1, 2, 3, 4};
+        std::cout << "init: " << std::endl;
+        for(auto i : ivec) {
+            std::cout << i << " ";
+        }
+        std::cout << std::endl;
+        std::transform(ivec.begin(), ivec.end(), ivec.begin(), [](int i){
+            // return i < 0 ? -i : i;
+            if(i<0) return -i; else return i;
+        });
+        std::cout << "transform: " << std::endl;
+        for(auto i : ivec) {
+            std::cout << i << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    {
+        std::placeholders::_1;
+    }
+
     return 0;
 }
