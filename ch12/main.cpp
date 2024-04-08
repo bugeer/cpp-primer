@@ -1,31 +1,7 @@
 #include <iostream>
 #include <memory>
-#include <new>
 #include <string>
 #include <vector>
-
-class T {
-public:
-    T();
-    T(T &&) = default;
-    T(const T &) = default;
-    T &operator=(T &&) = default;
-    T &operator=(const T &) = default;
-    ~T();
-private:
-};
-
-class Foo {
-public:
-    Foo();
-    Foo(Foo &&) = default;
-    Foo(const Foo &) = default;
-    Foo(const T&) {};
-    Foo &operator=(Foo &&) = default;
-    Foo &operator=(const Foo &) = default;
-    ~Foo();
-private:
-};
 
 void print_section(const std::string &s) {
     std::cout << std::endl;
@@ -33,12 +9,9 @@ void print_section(const std::string &s) {
     std::cout << std::endl;
 }
 
-std::shared_ptr<Foo> factory(T arg) {
-    return std::make_shared<Foo>(arg);
-}
-
-void use_factory(T arg) {
-    std::shared_ptr<Foo> p = factory(arg);
+void self_delete(int* p) {
+    std::cout << "fuck" << std::endl;
+    delete p;
 }
 
 int main (int argc, char *argv[]) {
@@ -67,6 +40,21 @@ int main (int argc, char *argv[]) {
 
         int *p1 = new int;
         int *p2 = new (std::nothrow) int;
+    }
+    {
+        print_section("deleter");
+        int *p = new int(42);
+        // std::shared_ptr<int> sp(new int(42), self_delete);
+        std::shared_ptr<int> sp(p, [](int *p){
+            std::cout << "lambda fuck" << std::endl;
+            delete p;
+        });
+
+        {
+            auto t = sp;
+            std::cout << "in" << std::endl;
+        }
+        std::cout << "out" << std::endl;
     }
 
     return 0;

@@ -5,7 +5,11 @@
 #include <memory>
 #include <string>
 #include <vector>
+
+class StrBlobPtr;
+
 class StrBlob{
+    friend class StrBlobPtr;
 public:
     typedef std::vector<std::string>::size_type size_type;
 
@@ -31,6 +35,9 @@ public:
     std::string& back();
     std::string& front() const;
     std::string& back() const;
+
+    StrBlobPtr begin();
+    StrBlobPtr end();
 
 private:
     std::shared_ptr<std::vector<std::string>> data;
