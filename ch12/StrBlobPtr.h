@@ -8,6 +8,8 @@
 #include <vector>
 
 class StrBlobPtr {
+    friend bool operator==(const StrBlobPtr&, const StrBlobPtr&);
+    friend bool operator!=(const StrBlobPtr&, const StrBlobPtr&);
 public:
     StrBlobPtr(): curr(0) { }
     StrBlobPtr(const StrBlob &a, size_t sz = 0): wptr(a.data), curr(sz) { }
@@ -16,12 +18,6 @@ public:
     std::vector<std::string>::iterator begin();
     std::vector<std::string>::iterator end();
 
-    bool operator== (const StrBlobPtr& rhs) {
-        return wptr.lock() == rhs.wptr.lock() && curr == rhs.curr;
-    }
-    bool operator!= (const StrBlobPtr& rhs) {
-        return !(*this == rhs);
-    }
     std::size_t operator- (const StrBlobPtr& rhs) {
         if(wptr.lock() != rhs.wptr.lock()) {
             throw std::runtime_error("not the same StrBlobPtr");
@@ -41,5 +37,7 @@ private:
     std::shared_ptr<std::vector<std::string>> check(std::size_t, const std::string&) const;
 };
 
+bool operator==(const StrBlobPtr&, const StrBlobPtr&);
+bool operator!=(const StrBlobPtr&, const StrBlobPtr&);
 
 #endif // !__STR_BLOB_PTR__

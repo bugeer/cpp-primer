@@ -42,3 +42,9 @@ StrBlobPtr::check(std::size_t i, const std::string &msg) const {
     return ret;
 }
 
+bool operator==(const StrBlobPtr& lhs, const StrBlobPtr& rhs) {
+    return lhs.wptr.lock() == rhs.wptr.lock() && lhs.curr == rhs.curr;
+}
+bool operator!=(const StrBlobPtr& lhs, const StrBlobPtr& rhs) {
+    return !(lhs == rhs);
+}

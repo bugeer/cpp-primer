@@ -64,3 +64,10 @@ ConstStrBlobPtr StrBlob::cend() {
     auto ret = ConstStrBlobPtr(*this, data->size());
     return ret;
 }
+
+bool operator==(const StrBlob& lhs, const StrBlob& rhs) {
+    return lhs.data == rhs.data;
+}
+bool operator!=(const StrBlob& lhs, const StrBlob& rhs) {
+    return !(lhs == rhs);
+}

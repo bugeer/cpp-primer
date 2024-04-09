@@ -88,3 +88,56 @@ StrVec::alloc_n_copy(const std::string *b, const std::string *e) {
 
     return {data, std::uninitialized_copy(b, e, data)};
 }
+
+bool operator==(const StrVec& lhs, const StrVec& rhs) {
+    if(lhs.size() != rhs.size() || lhs.capacity() != rhs.capacity()) {
+        return false;
+    } else {
+        auto it0=lhs.begine(), it1=rhs.begine();
+        while(it0 != lhs.end() && it1 != rhs.end()) {
+            if(*it0 != *it1) {
+                return false;
+            }
+        }
+
+        if(it0 == lhs.end() && it1 == rhs.end()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+bool operator!=(const StrVec& lhs, const StrVec& rhs) {
+    return !(lhs == rhs);
+}
+
+bool operator< (const StrVec& lhs, const StrVec& rhs) {
+    auto it0=lhs.begine(), it1=rhs.begine();
+    while(it0 != lhs.end() && it1 != rhs.end()) {
+        if(*it0 != *it1) {
+            return *it0 < *it1;
+        }
+    }
+
+    return it0 == lhs.end() && it1 != rhs.end();
+}
+
+bool operator> (const StrVec& lhs, const StrVec& rhs) {
+    auto it0=lhs.begine(), it1=rhs.begine();
+    while(it0 != lhs.end() && it1 != rhs.end()) {
+        if(*it0 != *it1) {
+            return *it0 > *it1;
+        }
+    }
+
+    return it0 != lhs.end() && it1 == rhs.end();
+}
+
+bool operator>=(const StrVec& lhs, const StrVec& rhs) {
+    return !(lhs < rhs);
+}
+
+bool operator<=(const StrVec& lhs, const StrVec& rhs) {
+    return !(lhs > rhs);
+}
