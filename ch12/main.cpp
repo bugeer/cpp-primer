@@ -56,6 +56,17 @@ int main (int argc, char *argv[]) {
         }
         std::cout << "out" << std::endl;
     }
+    {
+        print_section("dynamic array");
+        int *pia = new int[42];
+        typedef int arrT[42];
+        auto *p = new arrT[42]; // :)
+        std::cout << p << std::endl;
+        std::cout << p+1 << std::endl;
+
+        delete []pia;
+        delete []p;
+    }
 
     return 0;
 }

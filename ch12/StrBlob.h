@@ -7,18 +7,16 @@
 #include <vector>
 
 class StrBlobPtr;
+class ConstStrBlobPtr;
 
 class StrBlob{
     friend class StrBlobPtr;
+    friend class ConstStrBlobPtr;
 public:
     typedef std::vector<std::string>::size_type size_type;
 
     StrBlob();
-    StrBlob(StrBlob &&) = default;
-    StrBlob(const StrBlob &) = default;
     StrBlob(std::initializer_list<std::string> il);
-    StrBlob &operator=(StrBlob &&) = default;
-    StrBlob &operator=(const StrBlob &) = default;
     ~StrBlob();
 
     size_type size() const {
@@ -36,8 +34,10 @@ public:
     std::string& front() const;
     std::string& back() const;
 
-    StrBlobPtr begin();
-    StrBlobPtr end();
+    StrBlobPtr begin() const;
+    StrBlobPtr end() const;
+    ConstStrBlobPtr cbegin();
+    ConstStrBlobPtr cend();
 
 private:
     std::shared_ptr<std::vector<std::string>> data;

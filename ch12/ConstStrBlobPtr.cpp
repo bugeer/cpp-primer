@@ -1,38 +1,37 @@
-#include "StrBlobPtr.h"
-#include "StrBlob.h"
+#include "ConstStrBlobPtr.h"
 #include <cstddef>
 #include <memory>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
-std::string& StrBlobPtr::deref() const {
+std::string& ConstStrBlobPtr::deref() const {
     auto p = check(curr, "dereference past end");
     return (*p)[curr];
 }
 
-StrBlobPtr& StrBlobPtr::incr() {
-    check(curr, "increment past end of StrBlobPtr");
+ConstStrBlobPtr& ConstStrBlobPtr::incr() {
+    check(curr, "increment past end of ConstStrBlobPtr");
     ++curr;
     return *this;
 }
 
-std::vector<std::string>::iterator StrBlobPtr::begin() {
+std::vector<std::string>::const_iterator ConstStrBlobPtr::cbegin() const {
     auto p = check(curr, "begen issue");
     return p->begin();
 }
 
-std::vector<std::string>::iterator StrBlobPtr::end() {
+std::vector<std::string>::const_iterator ConstStrBlobPtr::cend() const {
     auto p = check(curr, "end issue");
     return p->end();
 }
 
 std::shared_ptr<std::vector<std::string>>
-StrBlobPtr::check(std::size_t i, const std::string &msg) const {
+ConstStrBlobPtr::check(std::size_t i, const std::string &msg) const {
     auto ret = wptr.lock();
 
     if(!ret) {
-        throw std::runtime_error("unbound StrBlobPtr");
+        throw std::runtime_error("unbound ConstStrBlobPtr");
     }
 
     if(i >= ret->size()) {
@@ -41,4 +40,3 @@ StrBlobPtr::check(std::size_t i, const std::string &msg) const {
 
     return ret;
 }
-

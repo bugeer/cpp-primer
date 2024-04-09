@@ -1,5 +1,6 @@
 #include "StrBlob.h"
 #include "StrBlobPtr.h"
+#include "ConstStrBlobPtr.h"
 #include <initializer_list>
 #include <memory>
 #include <stdexcept>
@@ -46,11 +47,20 @@ void StrBlob::pop_back() {
     data->pop_back();
 }
 
-StrBlobPtr StrBlob::begin() {
+StrBlobPtr StrBlob::begin() const {
     return StrBlobPtr(*this);
 }
 
-StrBlobPtr StrBlob::end() {
+StrBlobPtr StrBlob::end() const {
     auto ret = StrBlobPtr(*this, data->size());
+    return ret;
+}
+
+ConstStrBlobPtr StrBlob::cbegin() {
+    return ConstStrBlobPtr(*this);
+}
+
+ConstStrBlobPtr StrBlob::cend() {
+    auto ret = ConstStrBlobPtr(*this, data->size());
     return ret;
 }
