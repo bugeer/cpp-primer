@@ -3,6 +3,7 @@
 
 #include "StrBlob.h"
 #include <cstddef>
+#include <iterator>
 #include <memory>
 #include <string>
 #include <vector>
@@ -30,6 +31,19 @@ public:
 
         return *this;
     }
+    std::string operator[](std::size_t i) {
+        return (*wptr.lock())[i];
+    }
+
+    const std::string operator[](std::size_t i) const {
+        return (*wptr.lock())[i];
+    }
+    StrBlobPtr& operator++();
+    StrBlobPtr& operator--();
+    StrBlobPtr  operator++(int);
+    StrBlobPtr  operator--(int);
+    std::string& operator* () const;
+    std::string* operator->() const;
 
 private:
     std::size_t curr;

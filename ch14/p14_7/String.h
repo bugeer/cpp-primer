@@ -28,6 +28,13 @@ public:
     String &operator=(const_iterator);
     ~String();
 
+    char& operator[](std::size_t i) {
+        return first_item[i];
+    }
+    const char& operator[](std::size_t i) const {
+        return first_item[i];
+    }
+
     void push_back(const_reference);
     void pop_back();
 

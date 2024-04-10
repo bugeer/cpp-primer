@@ -1,6 +1,7 @@
 #ifndef __STR_BLOB__
 #define __STR_BLOB__
 
+#include <cstddef>
 #include <initializer_list>
 #include <memory>
 #include <string>
@@ -19,6 +20,13 @@ public:
     StrBlob();
     StrBlob(std::initializer_list<std::string> il);
     ~StrBlob();
+
+    std::string operator[](std::size_t i) {
+        return data->at(i);
+    }
+    const std::string operator[](std::size_t i) const {
+        return data->at(i);
+    }
 
     size_type size() const {
         return data->size();

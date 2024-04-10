@@ -32,6 +32,7 @@ public:
     ~Sales_data();
 
     Sales_data& operator+=(const Sales_data &);
+    Sales_data& operator=(const std::string &);
 
     std::string isbn() const {
         return bookNo;

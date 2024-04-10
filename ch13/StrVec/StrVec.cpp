@@ -38,6 +38,16 @@ StrVec& StrVec::operator=(StrVec &&rhs) noexcept {
     return *this;
 }
 
+StrVec& StrVec::operator=(std::initializer_list<std::string> il) {
+    auto data = alloc_n_copy(il.begin(), il.end());
+    free();
+    elements   = data.first;
+    first_free = data.second;
+    cap        = data.second;
+
+    return *this;
+}
+
 StrVec::~StrVec() {
     free();
 }

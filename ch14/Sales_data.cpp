@@ -32,6 +32,13 @@ bool compareIsbn(const Sales_data &sd1, const Sales_data &sd2) {
 Sales_data& Sales_data::operator+=(const Sales_data &rhs) {
     return combine(rhs);
 }
+
+Sales_data& Sales_data::operator=(const std::string &isbn) {
+    bookNo = isbn;
+
+    return *this;
+}
+
 bool operator==(const Sales_data &lhs, const Sales_data &rhs) {
     return lhs.bookNo == rhs.bookNo && lhs.units_sold == rhs.units_sold && lhs.revenue == rhs.revenue;
 }
@@ -42,9 +49,7 @@ bool operator!=(const Sales_data &lhs, const Sales_data &rhs) {
 
 Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs) {
     Sales_data ret(lhs);
-    ret.combine(rhs);
-
-    return ret;
+    return ret += rhs;
 }
 
 std::istream& operator>>(std::istream &is, Sales_data &rhs) {
