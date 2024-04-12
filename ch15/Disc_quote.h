@@ -35,7 +35,7 @@ public:
 
     double net_price(std::size_t) const = 0;
 
-private:
+protected:
     std::size_t quantity = 0;
     double discount = 0.0;
 };
@@ -46,7 +46,31 @@ public:
     Bulk_quote(std::string &book, double price, std::size_t qty, double disc)
         : Disc_quote(book, price, qty, disc) { }
 
-    double net_price(std::size_t) const override;
+    double net_price(std::size_t n) const override {
+        if(n > quantity) {
+            return (1-discount) * quantity * price;
+        } else {
+            return quantity * price;
+        }
+    }
+
+private:
+
+};
+
+class Limite_quote : Disc_quote {
+public:
+    Limite_quote() = default;
+    Limite_quote(std::string &book, double price, std::size_t qty, double disc)
+        : Disc_quote(book, price, qty, disc) { }
+
+    double net_price(std::size_t n) const override {
+        if(n < quantity) {
+            return (1-discount) * quantity * price;
+        } else {
+            return quantity * price;
+        }
+    }
 
 private:
 
