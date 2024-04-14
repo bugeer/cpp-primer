@@ -21,6 +21,13 @@ public:
         return std::cout << "Quote: bookNo: " << bookNo << ", price: " << price;
     }
 
+    virtual Quote* clone() const & {
+        return new Quote(*this);
+    }
+    virtual Quote* clone() && {
+        return new Quote(std::move(*this));
+    }
+
 protected:
     double price = 0.0;
 
@@ -44,6 +51,12 @@ public:
 
     std::ostream& debug() const override {
         return std::cout << "Bulk_quote: min_qty: " << min_qty << ", discount: " << discount;
+    }
+    Bulk_quote* clone() const & override {
+        return new Bulk_quote(*this);
+    }
+    Bulk_quote* clone() && override {
+        return new Bulk_quote(std::move(*this));
     }
 
 private:
