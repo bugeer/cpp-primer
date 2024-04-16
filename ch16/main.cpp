@@ -1,31 +1,19 @@
-#include <cstring>
-#include <iostream>
-#include <vector>
+#include <string>
+#include <utility>
 
-template <typename T>
-int compare(const T& v1, const T& v2) {
-    if(v1 > v2) {
-        return -1;
-    }
-    if(v2 > v1) {
-        return 1;
-    }
+template<typename T> using twin = std::pair<T, T>;
 
-    return 0;
-}
+twin<std::string> authors;
 
-template <unsigned N, unsigned M>
-int compare2(const char (&p1)[N], const char (&p2)[M]) {
-    return strcmp(p1, p2);
-}
+template<typename elemType> class ListItem;
+template<typename elemType> class List {
+    List<elemType>();
+    List<elemType>(const List<elemType>&);
+    ~List();
 
-int main (int argc, char *argv[]) {
-    std::vector<int> v1{1, 2, 3};
-    std::vector<int> v2{1, 2, 3};
-    std::cout << compare(0, 1) << std::endl;
-    std::cout << compare(v1, v2) << std::endl;
+    void insert(ListItem<elemType> *ptr, elemType val);
 
-    std::cout << compare2("hi", "mom") << std::endl;
+private:
+    ListItem<elemType> *front, *end;
+};
 
-    return 0;
-}
